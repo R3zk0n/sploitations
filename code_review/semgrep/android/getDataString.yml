@@ -1,0 +1,18 @@
+rules:
+  - id: getDataString
+    patterns:
+      - pattern-either:
+          - pattern: |
+              $V = getIntent();
+              ...
+              webview.loadUrl($V.getDataString());
+          - pattern: |
+              getIntent().getDataString();
+          
+    message: This Parses values into getDataString, This can lead to XSS or LFI bugs.
+    languages:
+      - java
+    severity: INFO
+    metadata:
+      cwe: cwe-200
+      owasp-mobile: m2

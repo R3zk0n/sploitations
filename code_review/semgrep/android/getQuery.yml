@@ -1,0 +1,16 @@
+rules:
+  - id: Query Parameter
+    patterns:
+      - pattern-either:
+          - pattern: |
+              $D.getQueryParameter("$X")
+    message: "Query Parameter Found.." 
+    languages:
+      - java
+    severity: INFO
+    metadata:
+      cwe: cwe-353
+      owasp-mobile: m8
+      masvs: resilience-1
+      reference: https://github.com/MobSF/owasp-mstg/blob/master/Document/0x05j-Testing-Resiliency-Against-Reverse-Engineering.md#testing-root-detection-mstg-resilience-1
+      license: LGPL-3.0-or-later

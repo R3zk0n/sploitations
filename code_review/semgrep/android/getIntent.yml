@@ -1,0 +1,14 @@
+rules:
+  - id: android_intent
+    patterns:
+      - pattern-not: getIntent()
+      - pattern-not: getIntent().getParcelable()
+      - pattern-either:
+          - pattern: |
+              getIntent().getParcelableExtra($X)
+    message: Bad
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-532

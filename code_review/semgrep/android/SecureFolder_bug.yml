@@ -1,0 +1,16 @@
+rules:
+  - id: android_intent
+    patterns:
+      - pattern-not: setResult($X)
+      - pattern-not: setResult($X, "...", ...);
+      - pattern-either:
+          - pattern: |
+              setResult($X, getIntent());
+          - pattern: |
+              setResult(getIntent());
+    message: Possiblity of Access to Content Providers
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-532

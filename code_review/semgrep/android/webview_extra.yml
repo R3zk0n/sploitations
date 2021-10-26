@@ -1,0 +1,15 @@
+rules:
+  - id: android_logging
+    patterns:
+      - pattern-not: webView.loadUrl();
+      - pattern-not: webView.loadUrl(getIntent());
+      - pattern-either:
+          - pattern: |
+              webView.loadUrl(getIntent().getStringExtra($X));
+    message: The Application parses a getStringExtra value to a webView.loadURL 
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-532
+
