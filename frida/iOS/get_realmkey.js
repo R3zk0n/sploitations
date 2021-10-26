@@ -3,10 +3,6 @@ Interceptor.attach(ObjC.classes.RLMRealmConfiguration['- setEncryptionKey:'].imp
         console.log("Called!")
         console.log(args[2])
         var key = new ObjC.Object(ptr(args[2]))
-        
-        //log(key.toString())
-       // console.log(JSON.stringify(key.bytes().toString(), null, 4));
-
 
         console.log("Key: ")
         console.log(hexdump(ptr(key.bytes()), {
