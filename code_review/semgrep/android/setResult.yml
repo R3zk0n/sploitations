@@ -1,0 +1,14 @@
+rules:
+  - id: Control_Result
+    patterns:
+      - pattern-either:
+          - pattern:
+              $X = getIntent();
+              ...
+              setResult(-1, $X);
+    message: setResult with Controllable intent. 
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-532

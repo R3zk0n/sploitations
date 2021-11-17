@@ -1,0 +1,15 @@
+rules:
+  - id: GetStringExtra
+    patterns:
+      - pattern-either:
+          - pattern:
+              getIntent().getStringExtra(...)
+          - pattern:
+              $X = getIntent().getStringExtra(...)
+    message: getStringExtra. 
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-532
+

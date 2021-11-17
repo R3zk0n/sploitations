@@ -1,0 +1,12 @@
+rules:
+  - id: GetIntent_Query
+    patterns:
+      - pattern-either:
+          - pattern:
+              this.getIntent()
+    message: GetIntent Queries. 
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-532

@@ -1,0 +1,14 @@
+rules:
+  - id: JavaScript Bridges
+    patterns:
+      - pattern-either:
+          - pattern:
+              ToutiaoJSBridge
+          - pattern:
+              ToutiaoJSBridge.invokeMethod(...)
+    message: JavaScript Bridges found which could lead to exploiting private API. 
+    languages:
+      - java
+    severity: WARNING
+    metadata:
+      cwe: cwe-532
