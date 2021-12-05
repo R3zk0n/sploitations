@@ -10,7 +10,7 @@
 /// Small XPC fuzzer..
 //I wrote this because i want to test various XPC commands trivally while doing RE on mach services..
 // Code is subjectable to segfaults, trap, int3 and random trap’s, its not stable.. <(0.0<)
-// Greets to Pepper, Wireghoul, Jefahaha, and everyone else.. <3 - S
+
 
 #define    BOOTSTRAP_MAX_NAME_LEN            128
 #define    BOOTSTRAP_MAX_CMD_LEN            512
