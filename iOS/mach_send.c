@@ -8,7 +8,7 @@
 #include <CoreFoundation/CoreFoundation.h>
 
 /// Small XPC fuzzer..
-//I wrote this because i want to test various XPC commands trivally while doing RE on mach services..
+//I wrote this because i want to test various XPC commands and writing a app for each attempt is..tedious. 
 // Code is subjectable to segfaults, trap, int3 and random trap’s, its not stable.. <(0.0<)
 
 
