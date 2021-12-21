@@ -2,7 +2,7 @@ import pathlib
 import pathlib
 import re
 
-from strongarm.cli.utils import disassemble_method
+from strongarm.cli.utils import disassemble_method, disassemble_function
 from strongarm.macho import MachoParser, MachoAnalyzer, VirtualMemoryPointer
 from strongarm.objc import *
 
@@ -41,15 +41,25 @@ def xpc_get_string_basic(macho_bin):
         analyzer = MachoAnalyzer.get_analyzer(binary)
         get_string_symbol = f'_xpc_dictionary_get_string'
         xpc_symbol = analyzer.callable_symbol_for_symbol_name(get_string_symbol)
+        if not xpc_symbol:
+            raise ValueError("Appears to not used!")
         for xref in analyzer.calls_to(xpc_symbol.address):
-            print('Found call to {} at {}'.format(xpc_symbol, xref.caller_addr))
+            print('Found call to _xpc_dictionary_get_string: {} at 0x{}'.format(xpc_symbol.address, xref.caller_addr))
 
             function_anaylzer = ObjcFunctionAnalyzer.get_function_analyzer(binary, xref.caller_func_start_address)
             call_instr = ObjcInstruction.parse_instruction(
                 function_anaylzer,
                 function_anaylzer.get_instruction_at_address(xref.caller_addr)
             )
-            print(call_instr)
+          #  print(f"Binary: {macho_bin.name}")
+          #  print(function_anaylzer)
+          #  print(f"Function Start Address: {function_anaylzer.start_address} - End Address: {function_anaylzer.end_address}")
+          #  print(function_anaylzer)
+          #  disassemble = disassemble_function(binary, function_anaylzer.start_address)
+          #  print(disassemble)
+
+
+
 
 
 
@@ -160,7 +170,7 @@ def xpc_should_accept(macho_bin):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    pathlist = pathlib.Path('/Users/lsymons/XPC/libexec/').glob('*')
+    pathlist = pathlib.Path('/Volumes/SSD-TB1/iPhone/nehelper_iOS').glob('*')
     for file in pathlist:
         print("Parsing: {}\n".format(file))
         xpc_get_string_basic(file)
