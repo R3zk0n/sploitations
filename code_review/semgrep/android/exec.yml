@@ -1,0 +1,11 @@
+rules:
+- id: exec.java
+  patterns:
+    - pattern: $FUNC.exec($X)
+  message: $FUNC.exec with Payload - $X
+  languages: [java]
+  severity: ERROR
+  metadata: 
+      category: security
+      license: Commons Clause License Condition v1.0[LGPL-2.1-only]
+

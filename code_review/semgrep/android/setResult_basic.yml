@@ -1,0 +1,9 @@
+rules:
+- id: setResult_basic
+  pattern: setResult($X)
+  message: setResult Call found - $X, Ensure that a an attacker can not control the value. 
+  languages: [java]
+  severity: ERROR
+  metadata: 
+      category: security
+      license: Commons Clause License Condition v1.0[LGPL-2.1-only]

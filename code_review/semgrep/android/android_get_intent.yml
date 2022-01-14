@@ -1,0 +1,18 @@
+rules:
+  - id: android_intent
+    patterns:
+      - pattern-not: setResult($X)
+      - pattern-not: setResult($X, "...", ...);
+      - pattern-either:
+          - patterns:
+              - pattern: |
+                  $X =  getIntent();
+                  ...
+                  $SQLSTR(..., $X);
+              - metavariable-regex:
+                  metavariable: $SQLSTR
+                  regex: .*\b(?i)(setResult|getResult|)\b.*
+    message: Possiblity of Access to Content Providers - $X appears to parsed to $SQLSTR
+    languages:
+      - java
+    severity: WARNING
